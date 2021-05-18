@@ -15,17 +15,16 @@ func main() {
 
 	// Slices in Go are like arrays, but mutable
 	// They can only hold one type of primitive value
-	cards := newDeck()
-	cards.saveToFile("cards")
+	cards := newDeckFromFile("my_cards")
+	cards.print()
 	// We add new items via appending
 	// Notable: this creates a new item, it doesn't mutate the original slice
 	// cards = append(cards, "six of spades")
 
 	// Syntax like the below deminstrated is how we deal with multiple return values in Go
-	hand, remainingCards := deal(cards, 5)
+	// hand, remainingCards := deal(cards, 5)
 
-	hand.print()
-	remainingCards.print()
+
 }
 
 // While the 'main' package must be explicitly declared, files within the same package can call functions

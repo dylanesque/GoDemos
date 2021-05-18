@@ -6,24 +6,28 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 // Create a new type of deck
 
 type deck []string
 
+// func args of the same type can be shortened ala: a, b string
+
 func newDeck() deck {
 	cards := deck{}
 
 	cardSuits := []string{"spades", "diamonds", "hearts", "clubs"}
-	cardValues := []string{"ace", "two", "three"}
+	cardValues := []string{"ace", "two", "three", "four"}
 
 	// The underscore takes the place of an index that we don't need to use in the loop
 	for _, suit := range cardSuits {
 		for _, value := range cardValues {
-			cards = append(cards, suit+" of "+value)
+			cards = append(cards, value+" of "+suit)
 		}
 	}
 
@@ -56,5 +60,17 @@ func newDeckFromFile(filename string) deck {
 		fmt.Println("Error:", err)
 		os.Exit(1)
 	}
+	s := strings.Split(string(bs), ",")
+	return deck(s)
+}
 
+func (d deck) shuffle() {
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+
+	for i := range d {
+		newPosition := r.Intn(len(d) - 1)
+
+		d[i], d[newPosition] = d[newPosition], d[i]
+	}
 }
