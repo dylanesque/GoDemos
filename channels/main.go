@@ -21,6 +21,7 @@ func main() {
 		go checkLink(link, c)
 	}
 
+	// Multiple routines can't point to the same spot in memory
 	for l := range c {
 		go func(link string) {
 			time.Sleep(time.Second * 5)
