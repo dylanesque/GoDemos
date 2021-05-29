@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(temperatureConverter(30))
+	fmt.Println(factorializeNumber(5))
 }
 
 func temperatureConverter(i float64) float64 {
@@ -24,4 +24,19 @@ func reverseString(s string) string {
 		utf8.EncodeRune(buf[size-start:], r)
 	}
 	return string(buf)
+}
+
+// A simple recursive solution
+func factorializeNumber(n int) int {
+	if n == 0 {
+		return 1
+	}
+
+	fact := n
+
+	if (n > 0) {
+		return fact * factorializeNumber(n -1)
+	}
+
+	return fact
 }
