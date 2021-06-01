@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
+	"strings"
 	"unicode/utf8"
 )
 
 func main() {
-	fmt.Println(factorializeNumber(5))
+	fmt.Println(findLongestWord("What if we try a super-long word such as otorhinolaryngology"))
 }
 
 func temperatureConverter(i float64) float64 {
@@ -34,9 +35,21 @@ func factorializeNumber(n int) int {
 
 	fact := n
 
-	if (n > 0) {
-		return fact * factorializeNumber(n -1)
+	if n > 0 {
+		return fact * factorializeNumber(n-1)
 	}
 
 	return fact
+}
+
+func findLongestWord(s string) int {
+	words := strings.Split(s, " ");
+	count := 0
+	for _, word := range words {
+		if len(word) > count {
+			count = len(word)
+		}
+	}
+
+	return count
 }
