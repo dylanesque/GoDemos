@@ -7,7 +7,13 @@ import (
 )
 
 func main() {
-	fmt.Println(findLongestWord("What if we try a super-long word such as otorhinolaryngology"))
+	arrs := [][]int{
+		{13, 27, 18, 26},
+		{4, 5, 1, 3},
+		{32, 35, 37, 39},
+		{1000, 1001, 857, 1},
+	}
+	fmt.Println(largestOfFour(arrs))
 }
 
 func temperatureConverter(i float64) float64 {
@@ -43,7 +49,7 @@ func factorializeNumber(n int) int {
 }
 
 func findLongestWord(s string) int {
-	words := strings.Split(s, " ");
+	words := strings.Split(s, " ")
 	count := 0
 	for _, word := range words {
 		if len(word) > count {
@@ -52,4 +58,20 @@ func findLongestWord(s string) int {
 	}
 
 	return count
+}
+
+func largestOfFour(a [][]int) []int {
+	largestNumbers := make([] int, 4)
+	for i, child := range a {
+		for _, childNum := range child {
+			if childNum > largestNumbers[i] {
+				largestNumbers[i] = childNum
+			}
+		}
+	}
+	return largestNumbers
+}
+
+func confirmEnding(s string, t string) bool {
+	// confirmEnding("Bastian", "n") should return true
 }
