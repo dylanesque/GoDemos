@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	fmt.Println(confirmEnding("Bastian", "x"))
+	repeatAString("abc", 0)
 }
 
 func temperatureConverter(i float64) float64 {
@@ -78,10 +78,11 @@ func confirmEnding(s string, t string) bool {
 
 func repeatAString(s string, n int32) {
 	if n < 1 {
-		fmt.Println(" ")
+		fmt.Println("")
+	} else {
+		for i := 0; i <= len(s); i++ {
+			fmt.Printf("%s", s)
+		}
 	}
 
-	for i := 0; i < len(s); i++ {
-		fmt.Printf("%s", s)
-	}
 }
