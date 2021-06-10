@@ -7,13 +7,7 @@ import (
 )
 
 func main() {
-	arrs := [][]int{
-		{13, 27, 18, 26},
-		{4, 5, 1, 3},
-		{32, 35, 37, 39},
-		{1000, 1001, 857, 1},
-	}
-	fmt.Println(largestOfFour(arrs))
+	fmt.Println(confirmEnding("Bastian", "x"))
 }
 
 func temperatureConverter(i float64) float64 {
@@ -61,7 +55,7 @@ func findLongestWord(s string) int {
 }
 
 func largestOfFour(a [][]int) []int {
-	largestNumbers := make([] int, 4)
+	largestNumbers := make([]int, 4)
 	for i, child := range a {
 		for _, childNum := range child {
 			if childNum > largestNumbers[i] {
@@ -73,5 +67,21 @@ func largestOfFour(a [][]int) []int {
 }
 
 func confirmEnding(s string, t string) bool {
-	// confirmEnding("Bastian", "n") should return true
+	ending := s[len(s)-1:]
+	if ending == t {
+		return true
+	} else {
+		return false
+	}
+
+}
+
+func repeatAString(s string, n int32) {
+	if n < 1 {
+		fmt.Println(" ")
+	}
+
+	for i := 0; i < len(s); i++ {
+		fmt.Printf("%s", s)
+	}
 }
