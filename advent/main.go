@@ -7,6 +7,7 @@ func main() {
 }
 
 func reportRepair() {
+	// https://adventofcode.com/2020/day/1
 	entries := []int32{
 		1140,
 		1736,

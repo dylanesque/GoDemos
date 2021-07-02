@@ -7,7 +7,15 @@ import (
 )
 
 func main() {
-	repeatAString("abc", 0)
+  var xtemp int
+  x1 := 0
+  x2 := 1
+  for x:=0; x<5; x++ {
+    xtemp = x2
+    x2 = x2 + x1
+    x1 = xtemp
+  }
+  fmt.Println(x2)
 }
 
 func temperatureConverter(i float64) float64 {
@@ -76,7 +84,7 @@ func confirmEnding(s string, t string) bool {
 
 }
 
-func repeatAString(s string, n int32) {
+func repeatAString(s string, n int32) string {
 	if n < 1 {
 		fmt.Println("")
 	} else {
@@ -84,5 +92,14 @@ func repeatAString(s string, n int32) {
 			fmt.Printf("%s", s)
 		}
 	}
+	return "string"
+}
 
+func truncateString(s string, i int) string {
+	if i >= len(s) {
+		fmt.Println(s)
+	}
+	return "string"
+	// check length of s compared to i
+	// return a truncated (byte slice?) string the length of i, with "..." appended to the end
 }
