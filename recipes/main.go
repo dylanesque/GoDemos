@@ -105,3 +105,12 @@ func truncateString(s string, i int) string {
 	// check length of s compared to i
 	// return a truncated (byte slice?) string the length of i, with "..." appended to the end
 }
+
+func findElement(a []int, call func(int) bool) int {
+	for _, n := range a {
+		if call(n) == true {
+			return n;
+		}
+	}
+	 return fmt.Println("undefined")
+}
