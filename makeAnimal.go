@@ -14,6 +14,13 @@ type Animal struct {
 	noise      string
 }
 
+type animal interface {
+	CreateAnimal()
+	SeeAnimal()
+}
+
+// created animal must be of type cow, bird, or snake
+
 func (a *Animal) Eat() string {
 	return fmt.Sprintf("This animal eats %s", a.food)
 }
@@ -27,11 +34,7 @@ func (a *Animal) Speak() string {
 }
 
 func main() {
-	animals := []Animal{
-		{name: "cow", food: "grass", locomotion: "walk", noise: "moo"},
-		{name: "bird", food: "worms", locomotion: "fly", noise: "peep"},
-		{name: "snake", food: "mice", locomotion: "slither", noise: "hsss"},
-	}
+	animals := []Animal{}
 
 	var currentAnimal Animal
 
