@@ -8,10 +8,11 @@ import (
 )
 
 type Animal struct {
-	name       string
+	species    string
 	food       string
 	locomotion string
 	noise      string
+	name 	   string
 }
 
 type animal interface {
@@ -33,15 +34,34 @@ func (a *Animal) Speak() string {
 	return fmt.Sprintf(a.noise)
 }
 
+animalData := []Animal{
+	{species: "cow", food: "grass", locomotion: "walk", noise: "moo"},
+	{species: "bird", food: "worms", locomotion: "fly", noise: "peep"},
+	{species: "snake", food: "mice", locomotion: "slither", noise: "hsss"},
+	}
+
+	animals := make([]Animal{})
+
 func main() {
-	animals := []Animal{}
+
 
 	var currentAnimal Animal
 
 	for {
-		fmt.Println("Enter a type of animal (cow, bird, or snake), and info about it (eat, move, or speak)")
+		fmt.Println(`Enter 'newanimal <animal-type> <animal-name>' 
+		to create a new animal, or 'query <animal-name> <animal-fact>' to get information about an animal`)
 		reader := bufio.NewReader(os.Stdin)
 		str, _ := reader.ReadString('\n')
+
+		if strings.Contains(str, "newanimal") {
+			// add animal to list
+		}
+
+		if strings.Contains(str, "query") {
+			// fetch animal facts
+		}
+
+
 
 		animalQuery := strings.Fields(str)
 		for _, a := range animals {
