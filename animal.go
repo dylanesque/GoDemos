@@ -57,3 +57,57 @@ func main() {
 
 	}
 }
+
+/*
+
+Examine the below code
+
+func createNewAnimal(animalType string) Animal {
+	switch animalType {
+	case "cow":
+		return Cow{"grass", "walk", "moo"}
+	case "bird":
+		return Bird{"worms", "fly", "peep"}
+	case "snake":
+		return Snake{"mice", "slither", "hsss"}
+	default:
+		return nil
+	}
+}
+
+func main() {
+
+		command := tokens[0]
+		animalName := tokens[1]
+		if command == "newanimal" {
+			instance := createNewAnimal(tokens[2])
+			if instance == nil {
+				fmt.Println("invalid type")
+				continue
+			}
+
+			animals[animalName] = instance
+			fmt.Println("Created it!")
+			continue
+		}
+
+		if command == "query" {
+			animal, ok := animals[animalName]
+			if ok {
+				switch tokens[2] {
+				case "eat":
+					animal.Eat()
+				case "move":
+					animal.Move()
+				case "speak":
+					animal.Speak()
+				default:
+					fmt.Println("unknown query")
+				}
+			}
+		}
+	}
+
+}
+
+*/

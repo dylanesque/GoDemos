@@ -15,12 +15,31 @@ type Animal struct {
 	name 	   string
 }
 
+type Cow struct {
+	species "cow"
+	food "grass"
+	noise "moo"
+	locomotion "walk"
+}
+
+type Bird struct {
+	species "bird"
+	food "worms"
+	noise "peep"
+	locomotion "fly"
+}
+
+type Snake struct {
+	food "mice"
+	locomotion "slither"
+	noise "hiss"
+	species "snake"
+}
+
 type animal interface {
 	CreateAnimal()
 	SeeAnimal()
 }
-
-// created animal must be of type cow, bird, or snake
 
 func (a *Animal) Eat() string {
 	return fmt.Sprintf("This animal eats %s", a.food)
@@ -46,6 +65,7 @@ func main() {
 
 
 	var currentAnimal Animal
+	var animalList []Animal
 
 	for {
 		fmt.Println(`Enter 'newanimal <animal-type> <animal-name>' 
@@ -54,15 +74,21 @@ func main() {
 		str, _ := reader.ReadString('\n')
 
 		if strings.Contains(str, "newanimal") {
-			// add animal to list
+			animalCreate := strings.Fields(str)
+			var newAnimal animal
+			for _, a := range animalData {
+				if a.type == animalCreate[1] {
+					newAnimal = a 
+					newAnimal.name = animalCreate[2]
+				}
+			}
+			animalList = append(animalList, newAnimal)
 		}
 
 		if strings.Contains(str, "query") {
 			// fetch animal facts
+			animalQuery := strings.Fields(str)
 		}
-
-
-
 		animalQuery := strings.Fields(str)
 		for _, a := range animals {
 			if a.name == animalQuery[0] {
