@@ -15,7 +15,6 @@ func main() {
 	}
 	fn := GenDisplaceFn(a, v, s)
 	fmt.Println(fn(t));
-
 }
 
 func GenDisplaceFn(a, v, s float64) func(float64) float64{
