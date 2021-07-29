@@ -1,13 +1,51 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
+
+// Is this right?
+type Chopstick struct {
+	mu sync.Mutex
+}
+
+type Philosopher struct {
+	leftCS, rightCS *Chopstick
+}
+
+func (p Philosopher) eat() {
+	for {
+		p.leftCS.mu.Lock()
+		p.rightCS.mu.Lock()
+
+		fmt.Println("I am now eating")
+
+		p.leftCS.mu.Unlock()
+		p.rightCS.mu.Unlock()
+
+	}
+}
 
 func main() {
+	CSticks := make([] *Chopstick, 5)
 
+	for i := 0; i < 5; i++ {
+		CSticks[i] = new(Chopstick)
+	}
+
+	philos := make([] *Philosopher, 5)
+
+	for i := 0; i < 5; i++ {
+		philos[i] = &Philosopher{CSticks[i], CSticks[(i+1)%5]}
+	}
+
+	for i := 0; i < 5; i++ {
+		go philos[i].eat()
+	}
 }
 
 /*
-
 There should be 5 philosophers sharing chopsticks,
 with one chopstick between each adjacent pair of philosophers.
 

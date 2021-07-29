@@ -4,9 +4,9 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
+	"reflect"
 	"strconv"
-		"reflect"
+	"strings"
 )
 
 func main() {
@@ -15,30 +15,46 @@ func main() {
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
 	nums = numbers(scanner.Text())
-	fmt.Println(split(nums))
+	firstHalf, secondHalf := split(nums)
+	firstSl, secondSl := split(firstHalf)
+	thirdSl, fourthSl := split(secondHalf)
+
+	sorted := []int{}
+
+	go BubbleSort(firstSl)
+	go BubbleSort(secondSl)
+	go BubbleSort(thirdSl)
+	go BubbleSort(fourthSl)
+
+	sorted = append(sorted, firstSl...)
+	sorted = append(sorted, secondSl...)
+	sorted = append(sorted, thirdSl...)
+	sorted = append(sorted, fourthSl...)
+
+	BubbleSort(sorted)
+	fmt.Println(sorted)
 
 }
 
 func numbers(s string) []int {
-    var n []int
-    for _, f := range strings.Fields(s) {
-        i, err := strconv.Atoi(f)
-        if err == nil {
-            n = append(n, i)
-        }
-    }
-    return n
+	var n []int
+	for _, f := range strings.Fields(s) {
+		i, err := strconv.Atoi(f)
+		if err == nil {
+			n = append(n, i)
+		}
+	}
+	return n
 }
 
 func split(s []int) (x, y []int) {
-	first := s[:len(s) / 2]
-	second := s[len(s) / 2:]
-	BubbleSort(first)
-	BubbleSort(second)
+	first := s[:len(s)/2]
+	second := s[len(s)/2:]
 	return first, second
 }
 
 func BubbleSort(s []int) {
+	fmt.Println("Sorting ", s)
 	isSliceSorted := false
 
 	for !isSliceSorted {
@@ -61,18 +77,3 @@ func Swap(sl []int, i int) {
 	swapI(i, i+1)
 }
 
-/*
-
-Write a program to sort an array of integers.
-The program should partition the array into 4 parts,
-each of which is sorted by a different goroutine.
-Each partition should be of approximately equal size.
-Then the main goroutine should merge the 4 sorted subarrays
-into one large sorted array.
-
-The program should prompt the user to input a series of integers.
-Each goroutine which sorts ¼ of the array should print the subarray
-that it will sort. When sorting is complete, the main goroutine
-should print the entire sorted list.
-
-*/
